@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, viewport-fit=cover">
+    <title>For my girlfriend; 40</title>
+    <link rel="icon" href="./Pictures/heart.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwind.config.js"></script>
+</head>
+
+<body class="relative flex flex-col items-center justify-center h-screen overflow-hidden font-bold bg-[#FFe5e5]">
+    <div class="absolute flex flex-col items-center justify-center text-center">
+        <img id="cyclingImage" src="./Pictures/bunnyspray.gif" alt="Cute Bunny" class="w-60 mb-10">
+        <h1 class="text-4xl">Tracy...will you be my valentine??</h1>
+        <div class="flex items-center justify-center space-x-4 mt-8">
+            <button id="yesButton" onclick="location.href='yes.html'" class="w-16 h-10 bg-green-500 text-white text-lg font-bold rounded hover:bg-green-600">Yes</button>
+            <button id="noButton" class="w-16 h-10 bg-red-500 text-white text-lg font-bold rounded hover:bg-red-600">Naur</button>
+        </div>
+    </div>
+
+    <script>
+        // Two image URLs
+        const images = [
+            "./Pictures/bunnyspray.gif",
+            "./Pictures/bunnyhearts.gif"
+        ];
+
+        // Reference to the image element
+        const imageElement = document.getElementById("cyclingImage");
+
+        // Index to track the current image
+        let currentIndex = 0;
+
+        // Function to toggle the image
+        function toggleImage() {
+            // Switch to the next image (0 -> 1 -> 0)
+            currentIndex = (currentIndex + 1) % images.length;
+
+            // Update the image `src` attribute
+            imageElement.src = images[currentIndex];
+        }
+
+        // Set an interval to toggle the image every 3 seconds (3000 ms)
+        setInterval(toggleImage, 3000);
+
+        // Select the Yes and No buttons
+        const yesButton = document.getElementById("yesButton");
+        const noButton = document.getElementById("noButton");
+
+        // Add click event to the No button
+        noButton.addEventListener("click", () => {
+            // Get the current size of the Yes button
+            const currentWidth = parseInt(getComputedStyle(yesButton).width);
+            const currentHeight = parseInt(getComputedStyle(yesButton).height);
+
+            // Increase the size by 10px
+            const newWidth = currentWidth + 20;
+            const newHeight = currentHeight + 20;
+
+            // Apply the new size to the Yes button
+            yesButton.style.width = `${newWidth}px`;
+            yesButton.style.height = `${newHeight}px`;
+
+            // Adjust the No button's alignment with the Yes button
+            noButton.style.marginTop = `${(newHeight - 40) / 2}px`;
+        });
+    </script>
+</body>
+
+</html>
